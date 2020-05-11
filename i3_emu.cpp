@@ -38,6 +38,7 @@ int main()
             // TODO: code your application's behavior here.
             auto app = AppInst();
             auto shit = app.getWindowList();
+            // app.fgWinName();
         }
     }
     else

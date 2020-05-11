@@ -6,7 +6,7 @@ class AppInst
 {
 public:
   AppInst();
-  std::vector<std::vector<std::wstring> > getWindowList();
+
   void setActiveWindow(int id);
 };
 

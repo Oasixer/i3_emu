@@ -1,7 +1,13 @@
 #include <vector>
 #include "pch.h"
 #include "framework.h"
+
+#include "boost_utils.hpp"
 #include "AppInst.h"
+
+void AppInst::buildObjectsFromFiles(){
+  listFiles();
+}
 
 BOOL CALLBACK windowCallback(HWND hwnd, LPARAM lParam) {
   const DWORD TITLE_SIZE = 1024;
@@ -40,6 +46,7 @@ BOOL CALLBACK windowCallback(HWND hwnd, LPARAM lParam) {
 
 AppInst::AppInst(){
   std::cout << "Init AppInst" << std::endl;
+  buildObjectsFromFiles();
 }
 
 std::vector<std::vector<std::wstring> > AppInst::getWindowList(){

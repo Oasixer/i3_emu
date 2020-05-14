@@ -1,25 +1,40 @@
+#pragma once
 #include <boost/filesystem.hpp>
-#include <filesystem>
+#include "rapidjson/document.h"
+// #include "rapidjson/writer.h"
+// #include "rapidjson/stringbuffer.h"
+// #include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <vector>
+#include <string>
 
+namespace bfs = boost::filesystem;
 
-using namespace std;
-using namespace boost::filesystem;
+std::string readFile(const std::string &fileName)
+{
+  std::ifstream ifs(fileName.c_str(), std::ios::in | std::ios::binary | std::ios::ate);
 
-void listFiles(){
-  // list all files in current directory.
-  //You could put any file path in here, e.g. "/home/me/mwah" to list that directory
-  path p (".");
-
-  directory_iterator end_itr;
-
-  // cycle through the directory
-  for (directory_iterator itr(p); itr != end_itr; ++itr)
-  {
-    // If it's not a directory, list it. If you want to list directories too, just remove this check.
-    if (is_regular_file(itr->path())) {
-      // assign current file name to current_file and echo it out to the console.
-      string current_file = itr->path().string();
-      cout << current_file << endl;
-    }
+  std::ifstream::pos_type fileSize = ifs.tellg();
+  if (fileSize < 0){
+    return std::string();
   }
+
+  ifs.seekg(0, std::ios::beg);
+
+  std::vector<char> bytes(fileSize);
+  ifs.read(&bytes[0], fileSize);
+
+  return std::string(&bytes[0], fileSize);
 }
+
+rapidjson::Document* pathStrToDoc(std::string pathStr){
+  auto jsonStr = readFile(pathStr);
+  auto jsonCStr = jsonStr.c_str();
+  rapidjson::Document d;
+  d.Parse(jsonCStr);
+  return &d;
+}
+
+
+

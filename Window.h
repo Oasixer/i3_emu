@@ -2,16 +2,30 @@
 #include <vector>
 #include <string>
 
+#include "str_utils.hpp"
+
+//#include "Workspace.h"
+
+//#include "App.h"
+
+namespace i3{
+class App;
 class Window
 {
-public:
-  Window();
-  int workspace;
-  // Workspace* workspacePtr;
-  // App* appPtr;
-  // exePath should go in the App container
-  // std::wstring exePath;
-  std::wstring title;
-  int pid;
-};
+  private:
+    int workspace;
+    //Workspace *workspacePtr;
+    App* appPtr;
+    std::string title;
+    int pid;
+  public:
+    Window(int ws, std::string title, int pid, App *appPtr)
+      : workspace(ws) // TODO
+      , title(title)
+      , appPtr(appPtr)
+      ,pid(pid)
+    { }
 
+    void setAppPtr(App* appPtr){appPtr=appPtr;}
+};
+}

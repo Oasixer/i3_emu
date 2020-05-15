@@ -6,8 +6,9 @@
 #include "pch.h"
 #include "framework.h"
 
-#include "i3_emu.h"
 #include "AppInst.h"
+//#include "str_utils.h"
+#include "i3_emu.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

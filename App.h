@@ -1,5 +1,5 @@
 #pragma once
-// #include "rapidjson/document.h"
+#include "rapidjson/document.h"
 #include <vector>
 #include <string>
 #include <memory>
@@ -19,7 +19,7 @@ namespace i3{
 public:
   App(std::string pathStr);
 
-  // App(std::shared_ptr<rapidjson::Document> d);
+  App(std::shared_ptr<rapidjson::Document> d);
 
     // :name((*d)["name"].getString())
     // ,fullExePath((*d)["fullExePath"].getString())

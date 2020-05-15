@@ -4,6 +4,8 @@
 // #include "boost_utils.h"
 #include "win32_utils.h"
 #include "DataContainer.h"
+
+#include "str_utils.h"
 #include "AppInst.h"
 
 

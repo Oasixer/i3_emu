@@ -1,8 +1,8 @@
 #include <boost/filesystem.hpp>
 #include <string>
 
-#include "str_utils.h"
-// #include "boost_utils.hpp"
+//#include "str_utils.h"
+#include "boost_utils.h"
 
 #include "Window.h"
 #include "App.h"
@@ -10,21 +10,21 @@
 namespace bfs = boost::filesystem;
 namespace i3{
   App::App(std::string pathStr){
-    // auto jsonStr = utils::readFile(pathStr);
-    // const char* jsonCStr = jsonStr.c_str();
-    // rapidjson::Document d;
-    // d.Parse(jsonCStr);
+    auto jsonStr = utils::readFile(pathStr);
+    const char* jsonCStr = jsonStr.c_str();
+    rapidjson::Document d;
+    d.Parse(jsonCStr);
     
-    // name = d["name"].GetString();
-    // fullExePath = d["fullExePath"].GetString();
-    name = "a";
-    fullExePath = "a";
+    name = d["name"].GetString();
+    fullExePath = d["fullExePath"].GetString();
+    // name = "a";
+    // fullExePath = "a";
   }
 
-  // App::App(std::shared_ptr<rapidjson::Document> d){
-    // name = (*d)["name"].GetString();
-    // fullExePath = (*d)["fullExePath"].GetString();
-  // }
+  App::App(std::shared_ptr<rapidjson::Document> d){
+    name = (*d)["name"].GetString();
+    fullExePath = (*d)["fullExePath"].GetString();
+  }
 
 
 

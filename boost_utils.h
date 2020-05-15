@@ -2,7 +2,7 @@
 #define BOOST_UTILS_H_
 
 #include <boost/filesystem.hpp>
-// #include "rapidjson/document.h"
+#include "rapidjson/document.h"
 // #include "rapidjson/writer.h"
 // #include "rapidjson/stringbuffer.h"
 // #include <filesystem>
@@ -32,14 +32,14 @@ namespace utils {
     return std::string(&bytes[0], fileSize);
   }
 
-  // std::shared_ptr<rapidjson::Document> pathStrToDoc(std::string pathStr){
-    // auto jsonStr = readFile(pathStr);
-    // auto jsonCStr = jsonStr.c_str();
-    // // rapidjson::Document* d = new rapidjson::Document;
-    // std::shared_ptr<rapidjson::Document> d = std::make_shared<rapidjson::Document>();
-    // d -> Parse(jsonCStr);
-    // return d;
-  // }
+  std::shared_ptr<rapidjson::Document> pathStrToDoc(std::string pathStr){
+    auto jsonStr = readFile(pathStr);
+    auto jsonCStr = jsonStr.c_str();
+    // rapidjson::Document* d = new rapidjson::Document;
+    std::shared_ptr<rapidjson::Document> d = std::make_shared<rapidjson::Document>();
+    d -> Parse(jsonCStr);
+    return d;
+  }
 }
 
 #endif

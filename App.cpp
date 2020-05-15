@@ -1,7 +1,7 @@
 #include <boost/filesystem.hpp>
 #include <string>
 
-//#include "str_utils.h"
+#include "str_utils.h"
 #include "boost_utils.h"
 
 #include "Window.h"
@@ -17,20 +17,18 @@ namespace i3{
     
     name = d["name"].GetString();
     fullExePath = d["fullExePath"].GetString();
-    // name = "a";
-    // fullExePath = "a";
   }
 
-  App::App(std::shared_ptr<rapidjson::Document> d){
-    name = (*d)["name"].GetString();
-    fullExePath = (*d)["fullExePath"].GetString();
-  }
+  // App::App(std::shared_ptr<rapidjson::Document> d){
+    // name = (*d)["name"].GetString();
+    // fullExePath = (*d)["fullExePath"].GetString();
+  // }
 
 
 
   App::App(std::string name_, std::vector<std::wstring> vec){
     name=name_;
-    fullExePath = "temp";//utils::wstringToString((vec)[1]);
+    fullExePath = utils::wstringToString((vec)[1]);
   }
 
   void App::initWindowFromVec(std::vector<std::wstring> vec) {

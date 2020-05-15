@@ -44,7 +44,8 @@ BOOL CALLBACK windowCallback(HWND hwnd, LPARAM lParam) {
 
   return TRUE;
 }
-std::unique_ptr<std::vector<std::vector<std::wstring> > > getOpenWindowVecs(){
+
+inline std::unique_ptr<std::vector<std::vector<std::wstring> > > getOpenWindowVecs(){
   std::vector<std::vector<std::wstring> > windowVecs;
   EnumWindows(windowCallback, reinterpret_cast<LPARAM>(&windowVecs));
   for (const auto& windowVec : windowVecs){

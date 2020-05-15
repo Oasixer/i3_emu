@@ -1,5 +1,4 @@
-#ifndef BOOST_UTILS_H_
-#define BOOST_UTILS_H_
+#pragma once
 
 #include <boost/filesystem.hpp>
 #include "rapidjson/document.h"
@@ -15,7 +14,7 @@
 namespace bfs = boost::filesystem;
 
 namespace utils {
-  std::string readFile(const std::string& fileName)
+  inline std::string readFile(const std::string& fileName)
   {
     std::ifstream ifs(fileName.c_str(), std::ios::in | std::ios::binary | std::ios::ate);
 
@@ -32,14 +31,11 @@ namespace utils {
     return std::string(&bytes[0], fileSize);
   }
 
-  std::shared_ptr<rapidjson::Document> pathStrToDoc(std::string pathStr){
+  inline std::unique_ptr<rapidjson::Document> pathStrToDoc(std::string pathStr){
     auto jsonStr = readFile(pathStr);
     auto jsonCStr = jsonStr.c_str();
-    // rapidjson::Document* d = new rapidjson::Document;
-    std::shared_ptr<rapidjson::Document> d = std::make_shared<rapidjson::Document>();
+    std::unique_ptr<rapidjson::Document> d = std::make_unique<rapidjson::Document>();
     d -> Parse(jsonCStr);
     return d;
   }
 }
-
-#endif

@@ -10,7 +10,6 @@ namespace i3{
       std::shared_ptr<DataContainer> dataContainer;
     public:
       AppInst();
-      // void setActiveWindow(int id);
-      // void buildObjectsFromFiles();
+      std::shared_ptr<DataContainer> getDataContainer() { return dataContainer; };
   };
 }

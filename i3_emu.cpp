@@ -8,6 +8,7 @@
 
 #include "AppInst.h"
 //#include "str_utils.h"
+#include "DataContainer.h"
 #include "i3_emu.h"
 
 #ifdef _DEBUG
@@ -38,6 +39,9 @@ int main()
         {
             // TODO: code your application's behavior here.
             auto app = i3::AppInst();
+            //std::shared_ptr<DataContainer> dataCont = app.getDataContainer();
+            auto dataCont = app.getDataContainer();
+            int a;
             //auto shit = app.getOpenWindowVec();
             // app.fgWinName();
         }

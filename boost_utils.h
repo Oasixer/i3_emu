@@ -15,22 +15,22 @@
 namespace bfs = boost::filesystem;
 
 namespace utils {
-  // std::string readFile(const std::string& fileName)
-  // {
-    // std::ifstream ifs(fileName.c_str(), std::ios::in | std::ios::binary | std::ios::ate);
+  std::string readFile(const std::string& fileName)
+  {
+    std::ifstream ifs(fileName.c_str(), std::ios::in | std::ios::binary | std::ios::ate);
 
-    // std::ifstream::pos_type fileSize = ifs.tellg();
-    // if (fileSize < 0) {
-      // return std::string();
-    // }
+    std::ifstream::pos_type fileSize = ifs.tellg();
+    if (fileSize < 0) {
+      return std::string();
+    }
 
-    // ifs.seekg(0, std::ios::beg);
+    ifs.seekg(0, std::ios::beg);
 
-    // std::vector<char> bytes(fileSize);
-    // ifs.read(&bytes[0], fileSize);
+    std::vector<char> bytes(fileSize);
+    ifs.read(&bytes[0], fileSize);
 
-    // return std::string(&bytes[0], fileSize);
-  // }
+    return std::string(&bytes[0], fileSize);
+  }
 
   // std::shared_ptr<rapidjson::Document> pathStrToDoc(std::string pathStr){
     // auto jsonStr = readFile(pathStr);

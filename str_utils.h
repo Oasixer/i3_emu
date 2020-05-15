@@ -1,5 +1,5 @@
-#ifndef _STR_UTILS_h_
-#define _STR_UTILS_h_
+#ifndef STR_UTILS_H_
+#define STR_UTILS_H_
 #include <string>
 #include <locale>
 #include <codecvt>

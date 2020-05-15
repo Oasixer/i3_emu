@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <memory>
 
 #include "str_utils.hpp"
 
@@ -15,11 +16,11 @@ class Window
   private:
     int workspace;
     //Workspace *workspacePtr;
-    App* appPtr;
+    std::shared_ptr<App> appPtr;
     std::string title;
     int pid;
   public:
-    Window(int ws, std::string title, int pid, App *appPtr)
+    Window(int ws, std::string title, int pid, std::shared_ptr<App> appPtr)
       : workspace(ws) // TODO
       , title(title)
       , appPtr(appPtr)

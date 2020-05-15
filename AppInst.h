@@ -1,20 +1,16 @@
 #pragma once
 #include <vector>
 #include <string>
-
-//#include "DataContainer.h"
+#include <memory>
 
 namespace i3{
-    class DataContainer;
-class AppInst
-{
-    DataContainer* dataContainer;
-public:
-  AppInst();
-  std::vector<std::vector<std::wstring> >* getOpenWindowVec();
-  void setActiveWindow(int id);
-  void buildObjectsFromFiles();
-
-  
-};
+  class DataContainer;
+  class AppInst{
+    private:
+      std::shared_ptr<DataContainer> dataContainer;
+    public:
+      AppInst();
+      // void setActiveWindow(int id);
+      // void buildObjectsFromFiles();
+  };
 }

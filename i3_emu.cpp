@@ -37,7 +37,7 @@ int main()
         {
             // TODO: code your application's behavior here.
             auto app = i3::AppInst();
-            auto shit = app.getOpenWindowVec();
+            //auto shit = app.getOpenWindowVec();
             // app.fgWinName();
         }
     }

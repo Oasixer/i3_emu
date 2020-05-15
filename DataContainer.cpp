@@ -1,15 +1,17 @@
 #include <boost/filesystem.hpp>
+#include <rapidjson/document.h>
 
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <vector>
 #include <string>
+#include <memory>
 
 #include "boost_utils.hpp"
 #include "str_utils.hpp"
 
-#include "GlobalConfig.h"
+// #include "GlobalConfig.h"
 #include "App.h"
 #include "Window.h"
 
@@ -19,8 +21,8 @@ namespace bfs = boost::filesystem;
 
 namespace i3{
 DataContainer::DataContainer(std::string pathToSaveDir){
-  std::vector<App*> apps;
-  globalConfig = nullptr;
+  apps = {};
+  //globalConfig = nullptr;
 
   bfs::path p (pathToSaveDir);
   bfs::directory_iterator end_itr;
@@ -30,15 +32,16 @@ DataContainer::DataContainer(std::string pathToSaveDir){
   {
     // If it's not a directory, continue
     if (is_regular_file(itr->path())) {
-      auto dPtr = pathStrToDoc(itr->path().string());
+      auto d = pathStrToDoc(itr->path().string());
+      // auto d_alloc = d_old->GetAllocator();
+      // rapidjson
       if (itr->path().string().find("global.json") != std::string::npos){
         // Parse global config
-        GlobalConfig globalConfig(dPtr);
+        // GlobalConfig globalConfig(d);
       }
       else{
         // Otherwise, parse app
-        App newApp(dPtr);
-        apps.push_back(&newApp);
+        apps.push_back(std::make_shared<App>(d));
       }
     }
   }
@@ -51,19 +54,17 @@ std::string parseNameFromFullExePath(std::wstring fullExePath){
   return token;
 }
 
-App* DataContainer::findAppByNameOrCreateNewIfNeeded(std::string name, std::vector<std::wstring> vec){
+std::shared_ptr<App> DataContainer::findAppByNameOrCreateNewIfNeeded(std::string name, std::vector<std::wstring> vec){
   for (const auto appPtr : apps){
     if (appPtr->getName() == name){
       return appPtr;
     }
   }
-  
-  App newApp(name, &vec);
-  
-  return &newApp;
+
+  return std::make_shared<App>(name, vec);
 }
 
-void DataContainer::parseOpenWindowsFromVec(std::vector<std::vector<std::wstring> >* vecs){
+void DataContainer::parseOpenWindowsFromVec(std::unique_ptr<std::vector<std::vector<std::wstring> > > vecs){
   for (const auto& vec : (*vecs)){
     auto name = parseNameFromFullExePath(vec[1]);
     auto matchingAppPtr = findAppByNameOrCreateNewIfNeeded(name, vec);
@@ -72,8 +73,8 @@ void DataContainer::parseOpenWindowsFromVec(std::vector<std::vector<std::wstring
     auto title = wstringToString(vec[0]);
     auto pidStr = wstringToString(vec[2]);
     int pidInt = std::stoi(pidStr);
-    Window newWindow(workspaceNum, title, pidInt, matchingAppPtr);
-    matchingAppPtr -> addWindow(&newWindow);
+    auto newWindow = std::make_unique<Window>(workspaceNum, title, pidInt, matchingAppPtr);
+    matchingAppPtr -> addWindow(std::move(newWindow));
     // ^ inside this function, newWindow should be MODIFIED by adding a ptr to the app!
   }
 }

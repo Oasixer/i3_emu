@@ -12,15 +12,14 @@ namespace i3{
   App::App(std::string pathStr){
     auto jsonStr = readFile(pathStr);
     const char* jsonCStr = jsonStr.c_str();
-    //const char* jsonCStr = "{\"project\":\"rapidjson\",\"stars\":10}";
-    rapidjson::Document d2;
-    d2.Parse(jsonCStr);
+    rapidjson::Document d;
+    d.Parse(jsonCStr);
     
-    name = d2["name"].GetString();
-    fullExePath = d2["fullExePath"].GetString();
+    name = d["name"].GetString();
+    fullExePath = d["fullExePath"].GetString();
   }
 
-  App::App(rapidjson::Document* d){
+  App::App(std::shared_ptr<rapidjson::Document> d){
     name = (*d)["name"].GetString();
     fullExePath = (*d)["fullExePath"].GetString();
   }
@@ -29,13 +28,14 @@ namespace i3{
     
   }
 
-  App::App(std::string name, std::vector<std::wstring>* vec){
+  App::App(std::string name, std::vector<std::wstring> vec){
     name=name;
-    fullExePath = wstringToString((*vec)[1]);
+    fullExePath = wstringToString((vec)[1]);
   }
 
-  void App::addWindow(Window* win){
-    windows.push_back(win);
+  void App::addWindow(std::unique_ptr<Window> win){
+    std::shared_ptr<Window> winSharedPtr = std::move(win);
+    windows.push_back(winSharedPtr);
     win -> setAppPtr(this);
   }
 

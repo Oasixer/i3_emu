@@ -4,6 +4,7 @@
 // #include "rapidjson/writer.h"
 // #include "rapidjson/stringbuffer.h"
 // #include <filesystem>
+#include <memory>
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -28,12 +29,13 @@ std::string readFile(const std::string &fileName)
   return std::string(&bytes[0], fileSize);
 }
 
-rapidjson::Document* pathStrToDoc(std::string pathStr){
+std::shared_ptr<rapidjson::Document> pathStrToDoc(std::string pathStr){
   auto jsonStr = readFile(pathStr);
   auto jsonCStr = jsonStr.c_str();
-  rapidjson::Document d;
-  d.Parse(jsonCStr);
-  return &d;
+  // rapidjson::Document* d = new rapidjson::Document;
+  std::shared_ptr<rapidjson::Document> d = std::make_shared<rapidjson::Document>();
+  d -> Parse(jsonCStr);
+  return d;
 }
 
 

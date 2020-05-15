@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 
-#include "str_utils.hpp"
+#include "str_utils.h"
 
 //#include "Workspace.h"
 
@@ -20,13 +20,13 @@ class Window
     std::string title;
     int pid;
   public:
-    Window(int ws, std::string title, int pid, std::shared_ptr<App> appPtr)
-      : workspace(ws) // TODO
-      , title(title)
-      , appPtr(appPtr)
-      ,pid(pid)
-    { }
+    Window(int ws, std::string title, int pid);//, std::shared_ptr<App> appPtr);
+      // : workspace(ws) // TODO
+      // , title(title)
+      // , appPtr(appPtr)
+      // , pid(pid)
+    // { }
 
-    void setAppPtr(App* appPtr){appPtr=appPtr;}
+    void setAppPtr(std::shared_ptr<App> appPtr);//{appPtr=appPtr;}
 };
 }

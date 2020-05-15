@@ -3,8 +3,8 @@
 #include <string>
 #include <memory>
 
+class DataContainer;
 namespace i3{
-  class DataContainer;
   class AppInst{
     private:
       std::shared_ptr<DataContainer> dataContainer;

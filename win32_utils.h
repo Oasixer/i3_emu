@@ -24,8 +24,8 @@ BOOL CALLBACK windowCallback(HWND hwnd, LPARAM lParam) {
   const BOOL bInheritHandle = FALSE;
   HANDLE hProcess = OpenProcess(dwDesiredAccess, bInheritHandle, pid);
 
-  DWORD nSizeActual = 0;
-  const DWORD N_SIZE_MAX = 4000;
+  DWORD nSizeActual = 1000; //for some reason if these values are not equal, fuckery occurs
+  const DWORD N_SIZE_MAX = 1000;
   const DWORD dwFlags = 0;
   wchar_t exePathArr[N_SIZE_MAX];
   QueryFullProcessImageNameW(hProcess, dwFlags, exePathArr, &nSizeActual);
@@ -39,7 +39,7 @@ BOOL CALLBACK windowCallback(HWND hwnd, LPARAM lParam) {
   // The only way for a C API to pass arbitrary data is by means of a void*.
   std::vector<std::vector<std::wstring> >& info =
     *reinterpret_cast<std::vector<std::vector<std::wstring> >*>(lParam);
-  std::vector<std::wstring> newInfo = {title, exePath, pidStr};
+  std::vector<std::wstring> newInfo {title, exePath, pidStr};
   info.push_back(newInfo);
 
   return TRUE;

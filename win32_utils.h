@@ -49,8 +49,8 @@ inline std::unique_ptr<std::vector<std::vector<std::wstring> > > getOpenWindowVe
   std::vector<std::vector<std::wstring> > windowVecs;
   EnumWindows(windowCallback, reinterpret_cast<LPARAM>(&windowVecs));
   for (const auto& windowVec : windowVecs){
-    std::wcout << L"Title: " << windowVec[0] << std::endl;
-    std::wcout << L"Path: " << windowVec[1] << std::endl;
+    //std::wcout << L"Title: " << windowVec[0] << std::endl;
+    //std::wcout << L"Path: " << windowVec[1] << std::endl;
   }
   // auto windowsPtr(std::make_unique<std::vector<std::vector<std::wstring> > >);
   return std::make_unique<std::vector<std::vector<std::wstring> > >(windowVecs);

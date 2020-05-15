@@ -41,4 +41,10 @@ namespace i3{
     winSharedPtr -> setAppPtr(getptr());
   }
 
+  std::ostream& operator<<(std::ostream& os, const App& app)
+  {
+    os << app.name << std::endl << app.fullExePath << std::endl;
+    return os;
+  }
+
 }

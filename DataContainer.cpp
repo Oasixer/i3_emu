@@ -19,6 +19,10 @@
 namespace bfs = boost::filesystem;
 
 namespace i3{
+  DataContainer::DataContainer(){
+
+  }
+
   DataContainer::DataContainer(std::string pathToSaveDir){
     bfs::path p (pathToSaveDir);
     bfs::directory_iterator end_itr;
@@ -65,5 +69,21 @@ namespace i3{
       int pidInt = std::stoi(pidStr);
       matchingAppPtr -> addWindow(std::make_unique<Window>(workspaceNum, title, pidInt));
     }
+  }
+  void DataContainer::printApps()
+  {
+    for (const auto& app : apps) {
+      std::cout << (*app) << std::endl;
+
+    }
+  }
+  
+  std::ostream& operator<<(std::ostream& os, const DataContainer& dc)
+  {
+    os << "DC:" << std::endl;
+    for (const auto &app : dc.apps){
+      os << (*app);
+    }
+    return os;
   }
 }

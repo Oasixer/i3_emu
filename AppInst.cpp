@@ -1,5 +1,6 @@
 #include <vector>
 #include <memory>
+#include <iostream>
 
 #include "win32_utils.h"
 #include "DataContainer.h"
@@ -16,6 +17,10 @@ namespace i3{
     dataContainer -> parseOpenWindowsFromVec(std::move(vecPtr));
   }
 
+
+  const i3::DataContainer& AppInst::getDataContainer(){
+    return *dataContainer;
+  }
   // void AppInst::buildObjectsFromFiles() {
     //listFiles();
     // return;
@@ -24,4 +29,10 @@ namespace i3{
   // void AppInst::setActiveWindow(int id){
     // return;
   // }
+  
+  std::ostream& operator<<(std::ostream& os, AppInst appInst)
+  {
+    os << appInst.getDataContainer();
+    return os;
+  }
 }

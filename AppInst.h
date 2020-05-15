@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <iostream>
 
 class DataContainer;
 namespace i3{
@@ -10,6 +11,7 @@ namespace i3{
       std::shared_ptr<DataContainer> dataContainer;
     public:
       AppInst();
-      std::shared_ptr<DataContainer> getDataContainer() { return dataContainer; };
+      const DataContainer& getDataContainer();
+      friend std::ostream& operator<<(std::ostream& os, AppInst appInst);
   };
 }

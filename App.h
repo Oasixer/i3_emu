@@ -2,6 +2,7 @@
 #include "rapidjson/document.h"
 #include <vector>
 #include <string>
+#include <iostream>
 #include <memory>
 
 namespace i3{
@@ -29,5 +30,7 @@ namespace i3{
       void initWindowFromVec(std::vector<std::wstring> vec);
 
       const std::string getName() { return name; }
+
+      friend std::ostream& operator<<(std::ostream& os, const App& app);
   };
 }

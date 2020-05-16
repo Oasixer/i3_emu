@@ -16,7 +16,7 @@ namespace i3{
   App::App(std::string pathStr){
     auto jsonStr = utils::readFile(pathStr);
     const char* jsonCStr = jsonStr.c_str();
-    if (jsonStr == "null"){
+    if (jsonStr == "null" || jsonStr == ""){
       fprintf(stderr, "JSON parse error on file: %s, file contents are: %s", pathStr.c_str(), jsonCStr);
       exit(EXIT_FAILURE);
     }

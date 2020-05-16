@@ -1,6 +1,9 @@
 #include <boost/filesystem.hpp>
+#include "rapidjson/stringbuffer.h"
+#include <rapidjson/ostreamwrapper.h>
+#include <rapidjson/writer.h>
+//#include "rapidjson/prettywriter.h"
 
-#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -17,6 +20,7 @@
 #include "DataContainer.h"
 
 namespace bfs = boost::filesystem;
+namespace rj = rapidjson;
 
 namespace i3{
   DataContainer::DataContainer(){
@@ -48,7 +52,37 @@ namespace i3{
   void DataContainer::writeAppsToJson(){
     for (const auto& app : apps){
       // make an empty document, and start writing to all of its fields.
-    }
+      rj::Document d;
+      auto jsonStr{ app->toJsonString() };
+      std::cout << jsonStr << std::endl;
+      auto jsonCStr = jsonStr.c_str();
+      d.Parse(jsonCStr);
+
+      std::string savePath { "save\\" };
+      std::string jsonFt { ".json" };
+      std::string filename { savePath + app->getName() + jsonFt };
+      std::ofstream ofs { filename, std::ofstream::out };
+      
+       if ( !ofs.is_open() )
+       {
+        std::cerr << "Could not open file for writing!\n";
+        return; //EXIT_FAILURE;
+       }
+
+       rj::OStreamWrapper osw { ofs };
+       rj::Writer<rj::OStreamWrapper> writer2 { osw };
+       d.Accept( writer2 );
+      // --------
+
+      // rj::StringBuffer buffer;
+      // rj::Writer<rj::StringBuffer> writer(buffer);
+      // d.Accept(writer);
+
+      // ofs << buffer.GetString();
+
+      // std::cout << buffer.GetString();
+
+      }
   }
 
   std::shared_ptr<App> DataContainer::findAppByNameOrCreateNewIfNeeded(std::string name, std::vector<std::wstring> vec){
@@ -73,7 +107,7 @@ namespace i3{
       auto title = utils::wstringToString(vec[0]);
       auto pidStr = utils::wstringToString(vec[2]);
       int pidInt = std::stoi(pidStr);
-      matchingAppPtr -> addWindow(std::make_unique<Window>(hwnd, workspaceNum, title, pidInt));
+      matchingAppPtr->addWindow(std::make_unique<Window>(hwnd, workspaceNum, title, pidInt));
     }
   }
   

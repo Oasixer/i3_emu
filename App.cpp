@@ -1,4 +1,8 @@
 #include <boost/filesystem.hpp>
+#include "rapidjson/writer.h"
+#include "rapidjson/stringbuffer.h"
+
+#include <iostream>
 #include <string>
 
 #include "str_utils.h"
@@ -13,26 +17,17 @@ namespace i3{
     auto jsonStr = utils::readFile(pathStr);
     const char* jsonCStr = jsonStr.c_str();
     rapidjson::Document d;
-    d.Parse(jsonCStr);
+
+    d.Parse(jsonCStr); // This line crashes if the json string is invalid
     
     name = d["name"].GetString();
     fullExePath = d["fullExePath"].GetString();
   }
 
-  // App::App(std::shared_ptr<rapidjson::Document> d){
-    // name = (*d)["name"].GetString();
-    // fullExePath = (*d)["fullExePath"].GetString();
-  // }
-
-
-
   App::App(std::string name_, std::vector<std::wstring> vec){
     name=name_;
     fullExePath = utils::wstringToString((vec)[1]);
-  }
-
-  void App::initWindowFromVec(std::vector<std::wstring> vec) {
-
+    wsPref=0;
   }
 
   void App::addWindow(std::unique_ptr<Window> win){
@@ -40,6 +35,43 @@ namespace i3{
     windows.push_back(winSharedPtr);
     winSharedPtr -> setAppPtr(getptr());
   }
+
+  const std::string App::toJsonString() {
+    rapidjson::StringBuffer s;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+    writer.StartObject();
+    writer.Key("name");
+    writer.String(name.c_str());
+    writer.Key("fullExePath");
+    writer.String(fullExePath.c_str());
+    writer.Key("wsPref");
+    writer.Int(wsPref);
+    writer.Key("keybinds"); //TODO keybinds
+    writer.StartArray();
+    for (unsigned i = 0; i < 4; i++)
+      writer.Uint(i);
+    writer.EndArray();
+    writer.EndObject();
+    std::string str{ s.GetString() }; 
+    return str;
+  }
+
+  // rapidjson::StringBuffer App::toJsonStringBuffer() {
+    // rapidjson::StringBuffer s;
+    // rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+    // writer.StartObject();
+    // writer.Key("name");
+    // writer.String(name.c_str());
+    // writer.Key("fullExePath");
+    // writer.String(fullExePath.c_str());
+    // writer.Key("wsPref");
+    // writer.Int(wsPref);
+    // writer.Key("keybinds"); //TODO keybinds
+    // writer.StartArray();
+    // writer.EndArray();
+    // writer.EndObject();
+    // return s;
+  // }
 
   std::ostream& operator<<(std::ostream& os, const App& app)
   {

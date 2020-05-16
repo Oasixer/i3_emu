@@ -15,10 +15,16 @@ namespace i3{
     dataContainer = std::make_shared<DataContainer>("./save");
     auto vecPtr = getOpenWindowVecs();
     dataContainer -> parseOpenWindowsFromVec(std::move(vecPtr));
+    std::cout << "Finish init AppInst" << std::endl;
   }
 
   const i3::DataContainer& AppInst::getDataContainer(){
     return *dataContainer;
+  }
+
+  const void AppInst::writeAppsToJson()
+  {
+    dataContainer->writeAppsToJson();
   }
 
   std::ostream& operator<<(std::ostream& os, AppInst& appInst)

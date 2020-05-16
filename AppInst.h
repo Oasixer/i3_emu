@@ -12,6 +12,7 @@ namespace i3{
     public:
       AppInst();
       const DataContainer& getDataContainer();
+      const void writeAppsToJson();
       friend std::ostream& operator<<(std::ostream& os, AppInst& appInst);
   };
 }

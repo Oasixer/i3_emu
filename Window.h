@@ -3,8 +3,10 @@
 #include <string>
 #include <memory>
 
-//#include "Workspace.h"
+#include "pch.h"
+#include "framework.h"
 
+//#include "Workspace.h"
 //#include "App.h"
 
 namespace i3{
@@ -18,7 +20,7 @@ namespace i3{
       std::string title;
       int pid;
     public:
-      Window(int ws, std::string title, int pid);
+      Window(HWND hwnd, int ws, std::string title, int pid);
 
       void setAppPtr(std::shared_ptr<App> appPtr);
   };

@@ -63,22 +63,17 @@ namespace i3{
     return newApp;
   }
 
-  void DataContainer::parseOpenWindowsFromVec(std::unique_ptr<std::vector<std::vector<std::wstring> > > vecs){
-    for (const auto& vec : (*vecs)){
+  void DataContainer::parseOpenWindowsFromVec(std::unique_ptr<std::vector<std::pair<HWND, std::vector<std::wstring> > > > pairs){
+    for (const auto& pair_ : (*pairs)){
+      auto hwnd = pair_.first;
+      auto vec = pair_.second;
       auto name = utils::parseNameFromFullExePath(vec[1]);
       auto matchingAppPtr = findAppByNameOrCreateNewIfNeeded(name, vec);
       int workspaceNum = 0; // temp, should get this from config potentially future TODO
       auto title = utils::wstringToString(vec[0]);
       auto pidStr = utils::wstringToString(vec[2]);
       int pidInt = std::stoi(pidStr);
-      matchingAppPtr -> addWindow(std::make_unique<Window>(workspaceNum, title, pidInt));
-    }
-  }
-  void DataContainer::printApps()
-  {
-    for (const auto& app : apps) {
-      std::cout << (*app) << std::endl;
-
+      matchingAppPtr -> addWindow(std::make_unique<Window>(hwnd, workspaceNum, title, pidInt));
     }
   }
   

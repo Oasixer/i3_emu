@@ -2,6 +2,7 @@
 #include <memory>
 #include <vector>
 #include <string>
+#include <utility>
 
 #include "pch.h"
 #include "framework.h"
@@ -37,21 +38,20 @@ BOOL CALLBACK windowCallback(HWND hwnd, LPARAM lParam) {
 
   // Retrieve the pointer passed into this callback, and re-'type' it.
   // The only way for a C API to pass arbitrary data is by means of a void*.
-  std::vector<std::vector<std::wstring> >& info =
-    *reinterpret_cast<std::vector<std::vector<std::wstring> >*>(lParam);
+  std::vector<std::pair<HWND, std::vector<std::wstring> > >& info =
+    *reinterpret_cast<std::vector<std::pair<HWND, std::vector<std::wstring> > >*>(lParam);
   std::vector<std::wstring> newInfo {title, exePath, pidStr};
-  info.push_back(newInfo);
+  info.push_back(std::make_pair(hwnd, newInfo));
 
   return TRUE;
 }
 
-inline std::unique_ptr<std::vector<std::vector<std::wstring> > > getOpenWindowVecs(){
-  std::vector<std::vector<std::wstring> > windowVecs;
+inline std::unique_ptr<std::vector<std::pair<HWND, std::vector<std::wstring> > > > getOpenWindowVecs(){
+  std::vector<std::pair<HWND, std::vector<std::wstring> > > windowVecs;
   EnumWindows(windowCallback, reinterpret_cast<LPARAM>(&windowVecs));
-  for (const auto& windowVec : windowVecs){
+  // for (const auto& windowVec : windowVecs){
     //std::wcout << L"Title: " << windowVec[0] << std::endl;
     //std::wcout << L"Path: " << windowVec[1] << std::endl;
-  }
-  // auto windowsPtr(std::make_unique<std::vector<std::vector<std::wstring> > >);
-  return std::make_unique<std::vector<std::vector<std::wstring> > >(windowVecs);
+  // }
+  return std::make_unique<std::vector<std::pair<HWND, std::vector<std::wstring> > > >(windowVecs);
 }

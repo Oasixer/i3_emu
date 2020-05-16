@@ -16,10 +16,12 @@ namespace i3{
   App::App(std::string pathStr){
     auto jsonStr = utils::readFile(pathStr);
     const char* jsonCStr = jsonStr.c_str();
+    if (jsonStr == "null"){
+      fprintf(stderr, "JSON parse error on file: %s, file contents are: %s", pathStr.c_str(), jsonCStr);
+      exit(EXIT_FAILURE);
+    }
     rapidjson::Document d;
-
-    d.Parse(jsonCStr); // This line crashes if the json string is invalid
-    
+    rapidjson::ParseResult ok = d.Parse(jsonCStr); // This line crashes if the json string is invalid
     name = d["name"].GetString();
     fullExePath = d["fullExePath"].GetString();
   }

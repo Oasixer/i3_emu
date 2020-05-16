@@ -45,6 +45,12 @@ namespace i3{
     }
   }
 
+  void DataContainer::writeAppsToJson(){
+    for (const auto& app : apps){
+      // make an empty document, and start writing to all of its fields.
+    }
+  }
+
   std::shared_ptr<App> DataContainer::findAppByNameOrCreateNewIfNeeded(std::string name, std::vector<std::wstring> vec){
     for (const auto appPtr : apps){
       if (appPtr->getName() == name){
@@ -61,8 +67,6 @@ namespace i3{
     for (const auto& vec : (*vecs)){
       auto name = utils::parseNameFromFullExePath(vec[1]);
       auto matchingAppPtr = findAppByNameOrCreateNewIfNeeded(name, vec);
-      //std::cout << "made new app, name: " << matchingAppPtr->getName();
-      // std::wcout << L"Title: " << vec[0] << std::endl;
       int workspaceNum = 0; // temp, should get this from config potentially future TODO
       auto title = utils::wstringToString(vec[0]);
       auto pidStr = utils::wstringToString(vec[2]);

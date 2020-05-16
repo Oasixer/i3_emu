@@ -12,6 +12,6 @@ namespace i3{
     public:
       AppInst();
       const DataContainer& getDataContainer();
-      friend std::ostream& operator<<(std::ostream& os, AppInst appInst);
+      friend std::ostream& operator<<(std::ostream& os, AppInst& appInst);
   };
 }

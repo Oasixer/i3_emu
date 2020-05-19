@@ -16,7 +16,7 @@ namespace utils{
     std::string converted_str = converter.to_bytes( string_to_convert );
     return converted_str;
   }
-
+  
   inline std::string replaceChar(std::string str, const char ch1, const char ch2) {
   for (auto i = 0u; i < str.length(); i++) {
     if (str[i] == ch1)

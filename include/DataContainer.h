@@ -14,7 +14,7 @@ namespace i3 {
     private:
       std::vector<std::shared_ptr<App> > apps;
       std::shared_ptr<GlobalConfig> globalConfig;
-      std::vector<unique_ptr<Workspace> > workspaces;
+      //std::vector<std::unique_ptr<Workspace> > workspaces;
     public:
       DataContainer();
       DataContainer(std::string pathToSaveDir);

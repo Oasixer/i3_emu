@@ -16,6 +16,7 @@
 #include "GlobalConfig.h"
 #include "App.h"
 #include "WindowData.h"
+#include "Workspace.h"
 
 #include "DataContainer.h"
 
@@ -87,10 +88,10 @@ namespace i3{
 
   void DataContainer::CreateWorkspaceLayout(){
     for (const auto& app : apps){
-      if (app->windows){
+      //if (app->windows){
         // Some kind of code for specific applications to go into specific layouts could go here.
         // For now, instead, we just default to loading all the windows into workspace 0 in a tabbed layout.
-      }
+      //}
     }
   }
 

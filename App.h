@@ -6,13 +6,13 @@
 #include <memory>
 
 namespace i3{
-  class Window;
+  class WindowData;
   class App : public std::enable_shared_from_this<App>
   {
     private:
       std::string name;
       std::string fullExePath;
-      std::vector<std::shared_ptr<Window> > windows;
+      std::vector<std::shared_ptr<WindowData> > windows;
       int wsPref; // preferred workspace for this app to open into
 
     public:
@@ -25,12 +25,12 @@ namespace i3{
       
       const std::shared_ptr<App> getptr() { return shared_from_this(); }
 
-      void addWindow(std::unique_ptr<Window> win);
+      void addWindowData(std::unique_ptr<WindowData> win);
 
       const std::string toJsonString();
 
       // keybinds later
-      // void initWindowFromVec(std::vector<std::wstring> vec);
+      // void initWindowDataFromVec(std::vector<std::wstring> vec);
 
       const std::string getName() { return name; }
 

@@ -11,7 +11,7 @@
 
 namespace i3{
   class App;
-  class Window
+  class WindowData
   {
     private:
       int wsNum;
@@ -20,7 +20,7 @@ namespace i3{
       std::string title;
       int pid;
     public:
-      Window(HWND hwnd, int ws, std::string title, int pid);
+      WindowData(HWND hwnd, int ws, std::string title, int pid);
 
       void setAppPtr(std::shared_ptr<App> appPtr);
   };

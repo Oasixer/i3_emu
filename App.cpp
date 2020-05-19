@@ -8,7 +8,7 @@
 #include "str_utils.h"
 #include "boost_utils.h"
 
-#include "Window.h"
+#include "WindowData.h"
 #include "App.h"
 
 namespace bfs = boost::filesystem;
@@ -32,8 +32,8 @@ namespace i3{
     wsPref=0;
   }
 
-  void App::addWindow(std::unique_ptr<Window> win){
-    std::shared_ptr<Window> winSharedPtr = std::move(win);
+  void App::addWindowData(std::unique_ptr<WindowData> win){
+    std::shared_ptr<WindowData> winSharedPtr = std::move(win);
     windows.push_back(winSharedPtr);
     winSharedPtr -> setAppPtr(getptr());
   }

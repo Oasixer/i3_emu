@@ -33,7 +33,7 @@
     <ClInclude Include="AppInst.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Window.h">
+    <ClInclude Include="WindowData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DataContainer.h">
@@ -74,7 +74,7 @@
     <ClCompile Include="App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
+    <ClCompile Include="WindowData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

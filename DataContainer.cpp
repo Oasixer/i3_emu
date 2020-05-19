@@ -15,7 +15,7 @@
 
 #include "GlobalConfig.h"
 #include "App.h"
-#include "Window.h"
+#include "WindowData.h"
 
 #include "DataContainer.h"
 
@@ -43,7 +43,7 @@ namespace i3{
         }
         else{
           // Otherwise, parse app
-          apps.push_back(std::make_shared<App>(itr->path().string()));
+          // apps.push_back(std::make_shared<App>(itr->path().string()));
         }
       }
     }
@@ -85,6 +85,15 @@ namespace i3{
       }
   }
 
+  void DataContainer::CreateWorkspaceLayout(){
+    for (const auto& app : apps){
+      if (app->windows){
+        // Some kind of code for specific applications to go into specific layouts could go here.
+        // For now, instead, we just default to loading all the windows into workspace 0 in a tabbed layout.
+      }
+    }
+  }
+
   std::shared_ptr<App> DataContainer::findAppByNameOrCreateNewIfNeeded(std::string name, std::vector<std::wstring> vec){
     for (const auto appPtr : apps){
       if (appPtr->getName() == name){
@@ -107,7 +116,7 @@ namespace i3{
       auto title = utils::wstringToString(vec[0]);
       auto pidStr = utils::wstringToString(vec[2]);
       int pidInt = std::stoi(pidStr);
-      matchingAppPtr->addWindow(std::make_unique<Window>(hwnd, workspaceNum, title, pidInt));
+      matchingAppPtr->addWindowData(std::make_unique<WindowData>(hwnd, workspaceNum, title, pidInt));
     }
   }
   

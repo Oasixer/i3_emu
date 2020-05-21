@@ -94,7 +94,7 @@ namespace i3{
     // The following line is the source of the error.
     // The Tabbed constructor takes a pointer to any object that inherits from Component.
     // In this case, I pass it a pointer to a Workspace, which extends Composite, which extends Component.
-    auto tabbed = std::make_shared<Tabbed>(newWorkspace->getptr());
+    auto tabbed = std::make_shared<Tabbed>(newWorkspace);
 
     newWorkspace->add(tabbed); // add tabbed layout to workspace
     

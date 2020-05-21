@@ -7,6 +7,19 @@
 #include "pch.h"
 #include "framework.h"
 
+BOOL CALLBACK monitorCallback(HMONITOR hmonitor, HDC hdc, LPRECT lprect, LPARAM lParam){
+  std::vector<std::pair<HMONITOR, LPRECT> >& info =
+    *reinterpret_cast<std::vector<std::pair<HMONITOR, LPRECT> >*>(lParam);
+  info.push_back(std::make_pair(hmonitor, lprect));
+  return TRUE;
+}
+
+inline std::unique_ptr<std::vector<std::pair<HMONITOR, LPRECT>>> getMonitorDataVec(){
+  std::vector<std::pair<HMONITOR, LPRECT>> monitorVec;
+  EnumDisplayMonitors(NULL, NULL, monitorCallback, reinterpret_cast<LPARAM>(&monitorVec));
+  return std::make_unique<std::vector<std::pair<HMONITOR, LPRECT>>>(monitorVec);
+}
+
 BOOL CALLBACK windowCallback(HWND hwnd, LPARAM lParam) {
   const DWORD TITLE_SIZE = 1024;
   WCHAR windowTitle[TITLE_SIZE];

@@ -8,18 +8,20 @@
                 
   
 # Classes
-Base: base component. only does stuff that EVERY component must do, ie. rectangle math?
+Component: base component. only does stuff that EVERY component must do, ie. rectangle math, also getptr()
 
-Window(extends Base): A leaf node containing an actual hwnd to display, resize, etc
+Window(extends Component): A leaf node containing an actual hwnd to display, resize, etc
 
-Workspace(extends Base): A composite node which contains components, each of which could be a composite.
+Composite (extends Component): A generic composite which contains a vector of components, each of which could be a composite
+
+Workspace(extends Composite): A composite node which contains components, each of which could be a composite.
                          Workspaces are the lowest level of the i3 organization tree
 
-Horizontal(extends Base): A composite node which contains components, each of which could be a composite.
+Horizontal(extends Composite): A composite node which contains components, each of which could be a composite.
                           Horizontal split layout.
 
-Vertical(extends Base): A composite node which contains components, each of which could be a composite.
+Vertical(extends Composite): A composite node which contains components, each of which could be a composite.
                         Vertical split layout.
 
-Tabbed (extends Base): A composite node which contains components, each of which could be a composite.
+Tabbed (extends Composite): A composite node which contains components, each of which could be a composite.
                        Tabbed layout.

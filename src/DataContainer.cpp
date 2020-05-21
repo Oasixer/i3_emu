@@ -17,6 +17,8 @@
 #include "App.h"
 #include "WindowData.h"
 #include "Workspace.h"
+#include "Tabbed.h"
+#include "Window.h"
 
 #include "DataContainer.h"
 
@@ -25,7 +27,6 @@ namespace rj = rapidjson;
 
 namespace i3{
   DataContainer::DataContainer(){
-
   }
 
   DataContainer::DataContainer(std::string pathToSaveDir){
@@ -87,11 +88,25 @@ namespace i3{
   }
 
   void DataContainer::CreateWorkspaceLayout(){
+    auto newWorkspace = std::make_shared<Workspace>(0, getptr());
+    workspaces.push_back(newWorkspace);
+    
+    // The following line is the source of the error.
+    // The Tabbed constructor takes a pointer to any object that inherits from Component.
+    // In this case, I pass it a pointer to a Workspace, which extends Composite, which extends Component.
+    auto tabbed = std::make_shared<Tabbed>(newWorkspace->getptr());
+
+    newWorkspace->add(tabbed); // add tabbed layout to workspace
+    
     for (const auto& app : apps){
-      //if (app->windows){
+      if (app->isOpen()) {
         // Some kind of code for specific applications to go into specific layouts could go here.
         // For now, instead, we just default to loading all the windows into workspace 0 in a tabbed layout.
-      //}
+        for (const auto& windowData : app->getWindowDataVec()){
+          auto newWindow = std::make_shared<Window>(windowData);
+          tabbed -> add(newWindow);
+        }
+      }
     }
   }
 

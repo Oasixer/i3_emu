@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\DisplayWindow">
+      <UniqueIdentifier>{5a47162d-54b7-45b1-a6e1-dedd74c6ccc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DisplayWindow">
+      <UniqueIdentifier>{625fb6ec-8415-4762-8f7d-31ebda2f9fbe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="i3_emu.rc">
@@ -59,11 +65,26 @@
     <ClInclude Include="include\WindowData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DisplayWindow\include\Base.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="DisplayWindow\include\Window.h">
+      <Filter>Header Files\DisplayWindow</Filter>
     </ClInclude>
     <ClInclude Include="DisplayWindow\include\Workspace.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\DisplayWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayWindow\include\Horizontal.h">
+      <Filter>Header Files\DisplayWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayWindow\include\Tabbed.h">
+      <Filter>Header Files\DisplayWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayWindow\include\Vertical.h">
+      <Filter>Header Files\DisplayWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayWindow\include\Component.h">
+      <Filter>Header Files\DisplayWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayWindow\include\Composite.h">
+      <Filter>Header Files\DisplayWindow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -88,11 +109,20 @@
     <ClCompile Include="src\WindowData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DisplayWindow\src\Base.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DisplayWindow\src\Workspace.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\DisplayWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayWindow\src\Component.cpp">
+      <Filter>Source Files\DisplayWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayWindow\src\Tabbed.cpp">
+      <Filter>Source Files\DisplayWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayWindow\src\Window.cpp">
+      <Filter>Source Files\DisplayWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayWindow\src\Composite.cpp">
+      <Filter>Source Files\DisplayWindow</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

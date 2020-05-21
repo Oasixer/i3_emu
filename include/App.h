@@ -27,12 +27,18 @@ namespace i3{
 
       void addWindowData(std::unique_ptr<WindowData> win);
 
+      std::vector<std::shared_ptr<WindowData> >& getWindowDataVec() { return windows; };
+
+      bool isOpen() { return !windows.empty(); };
+
       const std::string toJsonString();
 
       // keybinds later
       // void initWindowDataFromVec(std::vector<std::wstring> vec);
 
-      const std::string getName() { return name; }
+      const std::string getName() const { return name; }
+
+      std::vector<std::shared_ptr<WindowData> >& getWindows() { return windows; };
 
       friend std::ostream& operator<<(std::ostream& os, const App& app);
   };

@@ -154,7 +154,12 @@
     <ResourceCompile Include="i3_emu.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DisplayWindow\include\Base.h" />
+    <ClInclude Include="DisplayWindow\include\Component.h" />
+    <ClInclude Include="DisplayWindow\include\Composite.h" />
+    <ClInclude Include="DisplayWindow\include\Horizontal.h" />
+    <ClInclude Include="DisplayWindow\include\Tabbed.h" />
+    <ClInclude Include="DisplayWindow\include\Vertical.h" />
+    <ClInclude Include="DisplayWindow\include\Window.h" />
     <ClInclude Include="DisplayWindow\include\Workspace.h" />
     <ClInclude Include="include\App.h" />
     <ClInclude Include="include\AppInst.h" />
@@ -171,7 +176,10 @@
     <ClInclude Include="include\WindowData.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DisplayWindow\src\Base.cpp" />
+    <ClCompile Include="DisplayWindow\src\Component.cpp" />
+    <ClCompile Include="DisplayWindow\src\Composite.cpp" />
+    <ClCompile Include="DisplayWindow\src\Tabbed.cpp" />
+    <ClCompile Include="DisplayWindow\src\Window.cpp" />
     <ClCompile Include="DisplayWindow\src\Workspace.cpp" />
     <ClCompile Include="src\App.cpp" />
     <ClCompile Include="src\AppInst.cpp" />

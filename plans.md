@@ -16,3 +16,4 @@
 # TODO
 * refactor: fix the > > (should be: >>) all over the damn codebase
 * refactor: add leading underscore to all private member variables
+* refactor: remove unnecessary Ptr in xPtr

@@ -13,6 +13,6 @@ namespace i3{
       void add(std::shared_ptr<Component> ele){
         children.push_back(ele);
       }
-      // void traverse();
+      std::vector<std::shared_ptr<Component>>& getChildren() const { return children };
   };
 }

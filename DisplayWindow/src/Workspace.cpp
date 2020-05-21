@@ -6,4 +6,8 @@ namespace i3 {
     _num = num;
     _parentDataContainer = parentDataContainer;
   }
+
+  Workspace::setMonitor(std::shared_ptr<MonitorData> monitorData){
+    _monitorData = monitorData;
+  }
 }

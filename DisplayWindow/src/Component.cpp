@@ -1,3 +1,4 @@
+#include "Composite.h"
 #include "Component.h"
 
 namespace i3{
@@ -6,5 +7,9 @@ namespace i3{
     _bottom = newBottom;
     _right = newTop;
     _left = newLeft;
+  }
+
+  void Component::setParent(std::shared_ptr<Composite> parent){
+    _parent = parent;
   }
 }

@@ -4,15 +4,17 @@
 #include <memory>
 #include <iostream>
 
-class DataContainer;
 namespace i3{
+  class DataContainer;
   class AppInst{
     private:
-      std::shared_ptr<DataContainer> dataContainer;
+      std::shared_ptr<DataContainer> _dataContainer;
     public:
       AppInst();
-      const DataContainer& getDataContainer();
-      const void writeAppsToJson();
+      const DataContainer& getDataContainer() const {
+        return *_dataContainer;
+      }
+      void writeAppsToJson() const;
       friend std::ostream& operator<<(std::ostream& os, AppInst& appInst);
   };
 }

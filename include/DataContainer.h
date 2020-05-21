@@ -13,27 +13,32 @@
 namespace i3 {
   class App;
   class GlobalConfig;
-  class MonitorData;
+  class Monitor;
+  class Window;
   class DataContainer: public std::enable_shared_from_this<DataContainer>
   {
     private:
-      std::vector<std::shared_ptr<App> > apps;
-      std::shared_ptr<GlobalConfig> globalConfig;
-      std::vector<std::shared_ptr<Workspace> > workspaces;
-      std::vector<std::shared_ptr<MonitorData>> monitors;
+      std::vector<std::shared_ptr<App>> _apps;
+      std::vector<std::shared_ptr<Window>> _windows;
+      std::shared_ptr<GlobalConfig> _globalConfig;
+      std::vector<std::shared_ptr<Workspace>> _workspaces;
+      std::vector<std::shared_ptr<Monitor>> _monitors;
     public:
       DataContainer();
       DataContainer(std::string pathToSaveDir);
       const std::shared_ptr<DataContainer> getptr() { return shared_from_this(); }
       std::unique_ptr<std::vector<std::shared_ptr<App> > > getApps(){
-       return std::make_unique<std::vector<std::shared_ptr<App> > >(apps); 
+       return std::make_unique<std::vector<std::shared_ptr<App> > >(_apps); 
       };
-      std::shared_ptr<App> findAppByNameOrCreateNewIfNeeded(std::string name, std::vector<std::wstring> vec);
-      std::shared_ptr<Window> findWindowByHwnd(HWND hwnd);
-      std::shared_ptr<MonitorData> findMonitorByHandle(HMONITOR hmonitor);
-      void parseOpenWindowsFromVec(std::unique_ptr<std::vector<std::pair<HWND, std::vector<std::wstring> > > > vec);
-      void parseMonitorDataFromVec(std::unique_ptr<std::vector<std::pair<HMONITOR, LPRECT>>> vec);
+      std::shared_ptr<App> findAppByNameOrCreateNewIfNeeded(std::string name, std::string fullExePath);
+      std::shared_ptr<Window> findWindowByHandle(HWND handle);
+      std::shared_ptr<Monitor> findMonitorByHandle(HMONITOR handle);
+      // void parseOpenWindowsFromVec(std::vector<std::shared_ptr<Window>>& windows)
+      // void parseMonitorFromVec(std::unique_ptr<std::vector<std::pair<HMONITOR, LPRECT>>> vec);
+      void setWindows(std::unique_ptr<std::vector<std::shared_ptr<Window>>> windows);
+      void setMonitors(std::unique_ptr<std::vector<std::shared_ptr<Monitor>>> monitors);
       void writeAppsToJson();
+      void attachApps();
       void createDefaultWorkspaceLayout();
       void applyDefaultWorkspaceLayout();
       friend std::ostream& operator<<(std::ostream& os, const DataContainer& dc);

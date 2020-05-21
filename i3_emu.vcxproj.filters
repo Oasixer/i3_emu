@@ -62,9 +62,6 @@
     <ClInclude Include="include\win32_utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\WindowData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DisplayWindow\include\Window.h">
       <Filter>Header Files\DisplayWindow</Filter>
     </ClInclude>
@@ -86,8 +83,8 @@
     <ClInclude Include="DisplayWindow\include\Composite.h">
       <Filter>Header Files\DisplayWindow</Filter>
     </ClInclude>
-    <ClInclude Include="include\MonitorData.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="DisplayWindow\include\Monitor.h">
+      <Filter>Header Files\DisplayWindow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -107,9 +104,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\WindowData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DisplayWindow\src\Workspace.cpp">

@@ -25,8 +25,8 @@ namespace utils{
 
   return str;
 }
-  inline std::string parseNameFromFullExePath(std::wstring fullExePath){
-    std::string s = wstringToString(fullExePath);
+  inline std::string parseNameFromFullExePath(std::string fullExePath){
+    std::string s = fullExePath;
     std::string delimiter = "\\"; // TODO: Make sure this actually works
     std::string token = s.substr(s.find_last_of(delimiter)+1);
     std::string trimmedEnding = token.substr(0, token.length() - 4);

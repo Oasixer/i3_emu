@@ -157,6 +157,7 @@
     <ClInclude Include="DisplayWindow\include\Component.h" />
     <ClInclude Include="DisplayWindow\include\Composite.h" />
     <ClInclude Include="DisplayWindow\include\Horizontal.h" />
+    <ClInclude Include="DisplayWindow\include\Monitor.h" />
     <ClInclude Include="DisplayWindow\include\Tabbed.h" />
     <ClInclude Include="DisplayWindow\include\Vertical.h" />
     <ClInclude Include="DisplayWindow\include\Window.h" />
@@ -168,13 +169,11 @@
     <ClInclude Include="include\framework.h" />
     <ClInclude Include="include\GlobalConfig.h" />
     <ClInclude Include="include\i3_emu.h" />
-    <ClInclude Include="include\MonitorData.h" />
     <ClInclude Include="include\pch.h" />
     <ClInclude Include="include\Resource.h" />
     <ClInclude Include="include\str_utils.h" />
     <ClInclude Include="include\targetver.h" />
     <ClInclude Include="include\win32_utils.h" />
-    <ClInclude Include="include\WindowData.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DisplayWindow\src\Component.cpp" />
@@ -188,7 +187,6 @@
     <ClCompile Include="src\GlobalConfig.cpp" />
     <ClCompile Include="src\i3_emu.cpp" />
     <ClCompile Include="src\pch.cpp" />
-    <ClCompile Include="src\WindowData.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

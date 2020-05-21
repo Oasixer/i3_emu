@@ -41,7 +41,7 @@ int main()
             // TODO: code your application's behavior here.
             i3::AppInst app = i3::AppInst();
 
-            app.writeAppsToJson();
+            // app.writeAppsToJson();
             
             std::cout << app <<std::endl;
             //auto shit = app.getOpenWindowVec();

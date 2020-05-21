@@ -8,7 +8,6 @@
 #include "str_utils.h"
 #include "boost_utils.h"
 
-#include "WindowData.h"
 #include "Window.h"
 #include "App.h"
 
@@ -23,20 +22,12 @@ namespace i3{
     }
     rapidjson::Document d;
     rapidjson::ParseResult ok = d.Parse(jsonCStr); // This line crashes if the json string is invalid
-    name = d["name"].GetString();
-    fullExePath = d["fullExePath"].GetString();
+    _name = d["name"].GetString();
+    _fullExePath = d["fullExePath"].GetString();
   }
 
-  App::App(std::string name_, std::vector<std::wstring> vec){
-    name=name_;
-    fullExePath = utils::wstringToString((vec)[1]);
-    wsPref=0;
-  }
-
-  void App::addWindowData(std::unique_ptr<WindowData> win){
-    std::shared_ptr<WindowData> winSharedPtr = std::move(win);
-    windows.push_back(winSharedPtr);
-    winSharedPtr -> setAppPtr(getptr());
+  void App::addWindow(std::shared_ptr<Window> window){
+    _windows.push_back(window);
   }
 
   const std::string App::toJsonString() {
@@ -44,11 +35,11 @@ namespace i3{
     rapidjson::Writer<rapidjson::StringBuffer> writer(s);
     writer.StartObject();
     writer.Key("name");
-    writer.String(name.c_str());
+    writer.String(_name.c_str());
     writer.Key("fullExePath");
-    writer.String(fullExePath.c_str());
+    writer.String(_fullExePath.c_str());
     writer.Key("wsPref");
-    writer.Int(wsPref);
+    writer.Int(_wsPref);
     writer.Key("keybinds"); //TODO keybinds
     writer.StartArray();
     for (unsigned i = 0; i < 4; i++)
@@ -76,18 +67,22 @@ namespace i3{
     // return s;
   // }
   
-  std::shared_ptr<Window> App::findWindowByHwnd(HWND hwnd){
-    for (const auto& windowData : windows){
-      if (windowData -> getHwnd() == hwnd){
-        return windowData -> getWindow();
+  std::shared_ptr<Window> App::findWindowByHandle(HWND handle){
+    for (const auto& window : _windows){
+      if (window -> getHandle() == handle){
+        return window;
       }
     }
     return nullptr;
   }
 
+  // std::vector<std::shared_ptr<Window>>& App::getWindows() {
+    // return _windows;
+  // }
+
   std::ostream& operator<<(std::ostream& os, const App& app)
   {
-    os << app.name << std::endl << app.fullExePath << std::endl;
+    os << app._name << std::endl << app._fullExePath << std::endl;
     return os;
   }
 

@@ -18,3 +18,4 @@
 * refactor: add leading underscore to all private member variables
 * refactor: remove unnecessary Ptr in xPtr
 * refactor: replace all handle types ie. hwnd with handle in function and variable names
+* refactor: replace int i = 4 and int i (4) with int i {4}

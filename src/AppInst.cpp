@@ -8,25 +8,20 @@
 #include "str_utils.h"
 #include "AppInst.h"
 
-
 namespace i3{
   AppInst::AppInst(){
     std::cout << "Init AppInst" << std::endl;
-    dataContainer = std::make_shared<DataContainer>("./save");
-    auto windowVecPtr = getOpenWindowVecs();
-    auto monitorDataVecPtr = getMonitorDataVec();
-    dataContainer -> parseOpenWindowsFromVec(std::move(windowVecPtr));
-    dataContainer -> parseMonitorDataFromVec(std::move(monitorDataVecPtr));
+    _dataContainer = std::make_shared<DataContainer>("./save");
+    _dataContainer->setWindows(std::move(utils::getOpenWindows()));
+    _dataContainer->setMonitors(std::move(utils::getMonitors()));
+    _dataContainer->attachApps();
     std::cout << "Finish init AppInst" << std::endl;
   }
 
-  const i3::DataContainer& AppInst::getDataContainer(){
-    return *dataContainer;
-  }
 
-  const void AppInst::writeAppsToJson()
-  {
-    dataContainer->writeAppsToJson();
+
+  void AppInst::writeAppsToJson() const{
+    _dataContainer->writeAppsToJson();
   }
 
   std::ostream& operator<<(std::ostream& os, AppInst& appInst)

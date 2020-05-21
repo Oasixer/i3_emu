@@ -29,10 +29,13 @@ namespace i3 {
        return std::make_unique<std::vector<std::shared_ptr<App> > >(apps); 
       };
       std::shared_ptr<App> findAppByNameOrCreateNewIfNeeded(std::string name, std::vector<std::wstring> vec);
+      std::shared_ptr<Window> findWindowByHwnd(HWND hwnd);
+      std::shared_ptr<MonitorData> findMonitorByHandle(HMONITOR hmonitor);
       void parseOpenWindowsFromVec(std::unique_ptr<std::vector<std::pair<HWND, std::vector<std::wstring> > > > vec);
       void parseMonitorDataFromVec(std::unique_ptr<std::vector<std::pair<HMONITOR, LPRECT>>> vec);
       void writeAppsToJson();
-      void CreateWorkspaceLayout();
+      void createDefaultWorkspaceLayout();
+      void applyDefaultWorkspaceLayout();
       friend std::ostream& operator<<(std::ostream& os, const DataContainer& dc);
   };
 }

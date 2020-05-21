@@ -1,6 +1,7 @@
 #include <memory>
 
 #include "App.h"
+#include "Window.h"
 #include "WindowData.h"
 
 namespace i3{
@@ -13,5 +14,9 @@ namespace i3{
 
   void WindowData::setAppPtr(std::shared_ptr<App> appPtr){
     appPtr = appPtr;
+  }
+  
+  void WindowData::setWindow(std::shared_ptr<Window> window){
+    _window = window;
   }
 }

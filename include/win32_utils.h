@@ -49,6 +49,8 @@ BOOL CALLBACK windowCallback(HWND hwnd, LPARAM lParam) {
   // std::wstring ws2 = std::to_wstring(i); // and back to wstring
   std::wstring pidStr = std::to_wstring(static_cast<int>(pid));
 
+  // Window window (hwnd)
+
   // Retrieve the pointer passed into this callback, and re-'type' it.
   // The only way for a C API to pass arbitrary data is by means of a void*.
   std::vector<std::pair<HWND, std::vector<std::wstring> > >& info =
@@ -67,4 +69,10 @@ inline std::unique_ptr<std::vector<std::pair<HWND, std::vector<std::wstring> > >
     //std::wcout << L"Path: " << windowVec[1] << std::endl;
   // }
   return std::make_unique<std::vector<std::pair<HWND, std::vector<std::wstring> > > >(windowVecs);
+}
+
+inline HMONITOR GetPrimaryMonitorHandle()
+{
+ const POINT ptZero = { 0, 0 };
+ return MonitorFromPoint(ptZero, MONITOR_DEFAULTTOPRIMARY);
 }

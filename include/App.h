@@ -7,6 +7,7 @@
 
 namespace i3{
   class WindowData;
+  class Window;
   class App : public std::enable_shared_from_this<App>
   {
     private:
@@ -37,6 +38,8 @@ namespace i3{
       // void initWindowDataFromVec(std::vector<std::wstring> vec);
 
       const std::string getName() const { return name; }
+
+      std::shared_ptr<Window> findWindowByHwnd(HWND hwnd);
 
       std::vector<std::shared_ptr<WindowData> >& getWindows() { return windows; };
 

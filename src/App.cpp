@@ -9,6 +9,7 @@
 #include "boost_utils.h"
 
 #include "WindowData.h"
+#include "Window.h"
 #include "App.h"
 
 namespace bfs = boost::filesystem;
@@ -74,6 +75,15 @@ namespace i3{
     // writer.EndObject();
     // return s;
   // }
+  
+  std::shared_ptr<Window> App::findWindowByHwnd(HWND hwnd){
+    for (const auto& windowData : windows){
+      if (windowData -> getHwnd() == hwnd){
+        return windowData -> getWindow();
+      }
+    }
+    return nullptr;
+  }
 
   std::ostream& operator<<(std::ostream& os, const App& app)
   {

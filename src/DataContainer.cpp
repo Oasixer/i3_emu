@@ -88,8 +88,10 @@ namespace i3{
       }
   }
 
-  void DataContainer::CreateWorkspaceLayout(){
+  void DataContainer::createDefaultWorkspaceLayout(){
     auto newWorkspace = std::make_shared<Workspace>(0, getptr());
+    auto primaryMonitor = findMonitorByHandle(GetPrimaryMonitorHandle());
+    newWorkspace -> setMonitor(primaryMonitor);
     workspaces.push_back(newWorkspace);
     
     // The following line is the source of the error.
@@ -105,14 +107,41 @@ namespace i3{
         // For now, instead, we just default to loading all the windows into workspace 0 in a tabbed layout.
         for (const auto& windowData : app->getWindowDataVec()){
           auto newWindow = std::make_shared<Window>(windowData);
+          windowData -> setWindow(newWindow);
           tabbed -> add(newWindow);
         }
       }
     }
   }
 
+  void DataContainer::applyDefaultWorkspaceLayout(){
+    HWND focusedHwnd = GetFocus();
+    auto focusedWindowBeforeApplying = findWindowByHwnd(focusedHwnd);
+    assert(focusedWindowBeforeApplying != nullptr);
+
+  }
+
+  std::shared_ptr<Window> DataContainer::findWindowByHwnd(HWND hwnd){
+    for (const auto& app : apps){
+      auto appSearchResult = app->findWindowByHwnd(HWND hwnd);
+      if (appSearchResult != nullptr){
+        return appSearchResult;
+      }
+    }
+    return nullptr;
+  }
+  
+  std::shared_ptr<MonitorData> DataContainer::findMonitorByHandle(HMONITOR handle){
+    for (const auto& monitor : monitors){
+      if (monitor -> getHandle() == handle){
+        return monitor;
+      }
+    }
+    return nullptr;
+  }
+
   std::shared_ptr<App> DataContainer::findAppByNameOrCreateNewIfNeeded(std::string name, std::vector<std::wstring> vec){
-    for (const auto appPtr : apps){
+    for (const auto& appPtr : apps){
       if (appPtr->getName() == name){
         return appPtr;
       }

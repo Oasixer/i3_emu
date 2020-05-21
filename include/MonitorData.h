@@ -14,5 +14,6 @@ namespace i3{
         :_hmonitor{ std::make_unique<HMONITOR>(hmonitor) }
         ,_lprect{ std::make_unique<LPRECT>(lprect) }
       { };
+      HMONITOR getHandle() const {return _hmonitor};
   };
 }

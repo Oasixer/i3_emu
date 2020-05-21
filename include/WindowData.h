@@ -20,7 +20,7 @@ namespace i3{
       std::string title;
       int pid;
     public:
-      WindowData(HWND hwnd, int ws, std::string title, int pid);
+      WindowData(HWND &hwnd, int ws, std::string title, int pid);
 
       void setAppPtr(std::shared_ptr<App> appPtr);
   };

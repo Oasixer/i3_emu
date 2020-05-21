@@ -13,8 +13,10 @@ namespace i3{
   AppInst::AppInst(){
     std::cout << "Init AppInst" << std::endl;
     dataContainer = std::make_shared<DataContainer>("./save");
-    auto vecPtr = getOpenWindowVecs();
-    dataContainer -> parseOpenWindowsFromVec(std::move(vecPtr));
+    auto windowVecPtr = getOpenWindowVecs();
+    auto monitorDataVecPtr = getMonitorDataVec();
+    dataContainer -> parseOpenWindowsFromVec(std::move(windowVecPtr));
+    dataContainer -> parseMonitorDataFromVec(std::move(monitorDataVecPtr));
     std::cout << "Finish init AppInst" << std::endl;
   }
 

@@ -19,6 +19,7 @@
 #include "Workspace.h"
 #include "Tabbed.h"
 #include "Window.h"
+#include "MonitorData.h"
 
 #include "DataContainer.h"
 
@@ -133,6 +134,12 @@ namespace i3{
       auto pidStr = utils::wstringToString(vec[2]);
       int pidInt = std::stoi(pidStr);
       matchingAppPtr->addWindowData(std::make_unique<WindowData>(hwnd, workspaceNum, title, pidInt));
+    }
+  }
+
+  void DataContainer::parseMonitorDataFromVec(std::unique_ptr<std::vector<std::pair<HMONITOR, LPRECT>>> vec){
+    for (const auto& dataPair : *vec){
+      monitors.push_back(std::make_shared<MonitorData>(dataPair.first, dataPair.second));
     }
   }
   

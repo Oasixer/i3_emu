@@ -115,8 +115,3 @@ namespace utils{
 
     // return CallWindowProc(prevWndProc, hwnd, uMsg, wParam, lParam);
 }
-
-
-
-
-}

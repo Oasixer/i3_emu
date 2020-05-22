@@ -7,6 +7,14 @@
 #include <codecvt>
 
 namespace utils{
+
+  inline std::wstring stringToWString(std::string narrow_utf8_source_string){
+    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+    // std::string narrow = converter.to_bytes(wide_utf16_source_string);
+    std::wstring wide = converter.from_bytes(narrow_utf8_source_string);
+    return wide;
+  }
+
   inline std::string wstringToString(std::wstring string_to_convert){
     //setup converter
     using convert_type = std::codecvt_utf8<wchar_t>;

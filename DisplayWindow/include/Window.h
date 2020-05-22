@@ -6,8 +6,6 @@
 
 #include "Component.h"
 
-LRESULT CALLBACK winSubClassProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData);
-
 namespace i3{
   class Composite;
   class App;

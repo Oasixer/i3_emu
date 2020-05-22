@@ -38,6 +38,7 @@ namespace i3 {
       void setMonitors(std::unique_ptr<std::vector<std::shared_ptr<Monitor>>> monitors);
       void writeAppsToJson();
       void attachApps();
+      void attachWindowCallbacks();
       void createDefaultWorkspaceLayout();
       void applyDefaultWorkspaceLayout();
       friend std::ostream& operator<<(std::ostream& os, const DataContainer& dc);

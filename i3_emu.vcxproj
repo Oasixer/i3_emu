@@ -158,6 +158,7 @@
     <ClInclude Include="DisplayWindow\include\Composite.h" />
     <ClInclude Include="DisplayWindow\include\Horizontal.h" />
     <ClInclude Include="DisplayWindow\include\Monitor.h" />
+    <ClInclude Include="DisplayWindow\include\Rect.h" />
     <ClInclude Include="DisplayWindow\include\Tabbed.h" />
     <ClInclude Include="DisplayWindow\include\Vertical.h" />
     <ClInclude Include="DisplayWindow\include\Window.h" />
@@ -173,11 +174,13 @@
     <ClInclude Include="include\Resource.h" />
     <ClInclude Include="include\str_utils.h" />
     <ClInclude Include="include\targetver.h" />
+    <ClInclude Include="include\win32debug_utils.h" />
     <ClInclude Include="include\win32_utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DisplayWindow\src\Component.cpp" />
     <ClCompile Include="DisplayWindow\src\Composite.cpp" />
+    <ClCompile Include="DisplayWindow\src\Rect.cpp" />
     <ClCompile Include="DisplayWindow\src\Tabbed.cpp" />
     <ClCompile Include="DisplayWindow\src\Window.cpp" />
     <ClCompile Include="DisplayWindow\src\Workspace.cpp" />

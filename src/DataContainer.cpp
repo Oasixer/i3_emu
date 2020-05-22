@@ -9,6 +9,7 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <array>
 
 #include "boost_utils.h"
 #include "str_utils.h"
@@ -162,6 +163,22 @@ namespace i3{
       app->addWindow(window);
       window->setApp(app);
     }
+  }
+  
+  void DataContainer::attachWindowCallbacks(){
+    for (auto& window : _windows){
+      window->regCallbackTest();
+    }
+
+
+    // Sleep(5000);
+    std::array<TCHAR, 256> className; //256 is max classname length
+    GetClassName(_windows[0]->getHandle(), className.data(), className.size());
+
+    WNDCLASSEX wce;
+    GetClassInfoEx(GetModuleHandle(nullptr), className.data(), &wce);
+
+    std::cout << "hi_" << std::endl;
   }
 
   // void DataContainer::parseOpenWindowsFromVec(std::unique_ptr<std::vector<std::pair<HWND, std::vector<std::wstring> > > > pairs){

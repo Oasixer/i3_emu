@@ -86,6 +86,12 @@
     <ClInclude Include="DisplayWindow\include\Monitor.h">
       <Filter>Header Files\DisplayWindow</Filter>
     </ClInclude>
+    <ClInclude Include="DisplayWindow\include\Rect.h">
+      <Filter>Header Files\DisplayWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="include\win32debug_utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\App.cpp">
@@ -119,6 +125,9 @@
       <Filter>Source Files\DisplayWindow</Filter>
     </ClCompile>
     <ClCompile Include="DisplayWindow\src\Composite.cpp">
+      <Filter>Source Files\DisplayWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayWindow\src\Rect.cpp">
       <Filter>Source Files\DisplayWindow</Filter>
     </ClCompile>
   </ItemGroup>

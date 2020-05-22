@@ -17,15 +17,10 @@ namespace i3{
     _dataContainer->attachApps();
     _dataContainer->createDefaultWorkspaceLayout();
     _dataContainer->applyDefaultWorkspaceLayout();
-   
-    // SIZE size{ 100,100 };
-    RECT rect{ 10, 10, 100, 100 };
-
-    std::cout << (*(_dataContainer->getWindows()))[0]->getRect()->top << std::endl;
-    std::cout << (*(_dataContainer->getWindows()))[0]->getRect()->bottom << std::endl;
-    (*(_dataContainer->getWindows()))[0]->setRect(rect);
-    std::cout << (*(_dataContainer->getWindows()))[0]->getRect()->top << std::endl;
-    std::cout << (*(_dataContainer->getWindows()))[0]->getRect()->bottom << std::endl;
+    _dataContainer->attachWindowCallbacks();
+    //std::string temp;
+    //std::cin >> temp;
+    // std::cout << (*(_dataContainer->getWindows()))[0]->getRect()->bottom << std::endl;
     std::cout << "Finish init AppInst" << std::endl;
   }
 

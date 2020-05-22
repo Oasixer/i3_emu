@@ -75,4 +75,28 @@ namespace utils {
     const POINT ptZero = { 0, 0 };
     return MonitorFromPoint(ptZero, MONITOR_DEFAULTTOPRIMARY);
   }
+
+  inline void OnSize(HWND hwnd, UINT flag, int width, int height)
+  {
+      // Handle resizing
+      std::cout << "resize2!!!!" << std::endl;
+  }
+
+  // inline LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+  // {
+      // switch (uMsg)
+      // {
+      // case WM_SIZE:
+          // {
+            // std::cout << "resize!!!!" << std::endl;
+              // int width = LOWORD(lParam);  // Macro to get the low-order word.
+              // int height = HIWORD(lParam); // Macro to get the high-order word.
+
+              // // Respond to the message:
+              // OnSize(hwnd, (UINT)wParam, width, height);
+          // }
+          // break;
+      // }
+  // }
+
 }

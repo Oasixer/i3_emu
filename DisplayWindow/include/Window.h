@@ -29,8 +29,6 @@ namespace i3{
 
     std::string getFullExePath() const { return _fullExePath; };
 
-    void regCallbackTest();
-
     void WinMove(int deltaTop, int deltaRight, int deltaBottom, int deltaLeft);
   };
 }

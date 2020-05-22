@@ -20,14 +20,6 @@ namespace i3{
     _app = app;
   }
   
-  void Window::regCallbackTest(){
-
-    WinMove(65, 0, 12, 315);
-    auto err0 = utils::getLastErrorStr();
-    std::cout <<"err0 "<< err0 << std::endl;
-  }
-
-
   void Window::WinMove(int deltaTop, int deltaRight, int deltaBottom, int deltaLeft){
     // So that compatibility is retained, don't set ErrorLevel for commands that are native to AutoIt2
     // but that AutoIt2 doesn't use ErrorLevel with (such as this one).

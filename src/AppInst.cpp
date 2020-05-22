@@ -3,9 +3,10 @@
 #include <iostream>
 
 #include "win32_utils.h"
-#include "DataContainer.h"
-
 #include "str_utils.h"
+
+#include "Taskbar.h"
+#include "DataContainer.h"
 #include "AppInst.h"
 
 namespace i3{
@@ -21,6 +22,10 @@ namespace i3{
     //std::string temp;
     //std::cin >> temp;
     // std::cout << (*(_dataContainer->getWindows()))[0]->getRect()->bottom << std::endl;
+    gShowHideTaskBar(true); // hide
+    Sleep(1000);
+    gShowHideTaskBar(false); // show
+
     std::cout << "Finish init AppInst" << std::endl;
   }
 

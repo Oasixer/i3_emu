@@ -15,7 +15,8 @@ namespace utils {
 
   inline BOOL CALLBACK monitorCallback(HMONITOR hmonitor, HDC hdc, LPRECT lprect, LPARAM lParam) {
     std::vector<std::shared_ptr<i3::Monitor>>& monitors = *reinterpret_cast<std::vector<std::shared_ptr<i3::Monitor>>*>(lParam);
-    monitors.push_back(std::make_shared<i3::Monitor>(hmonitor, lprect));
+    RECT rect(*lprect);
+    monitors.push_back(std::make_shared<i3::Monitor>(hmonitor, rect));
     return TRUE;
   }
 

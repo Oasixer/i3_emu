@@ -4,16 +4,18 @@
 #include "framework.h"
 #include "pch.h"
 
+#include "Rect.h"
+
 namespace i3{
   class Monitor{
     private:
-      std::unique_ptr<HMONITOR> _handle;
-      std::unique_ptr<LPRECT> _lprect;
+      const HMONITOR _handle;
+      std::shared_ptr<Rect> _rect;
     public:
-      Monitor(HMONITOR handle, LPRECT lprect)
-        :_handle{ std::make_unique<HMONITOR>(handle) }
-        ,_lprect{ std::make_unique<LPRECT>(lprect) }
+      Monitor(HMONITOR handle, RECT rect)
+        :_handle{ handle }
+        ,_rect{ std::make_shared<Rect>(rect) }
       { };
-      const HMONITOR& getHandle() const {return *_handle; };
+      const HMONITOR getHandle() const { return _handle; };
   };
 }

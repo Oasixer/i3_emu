@@ -15,3 +15,7 @@
     
 # TODO
 * refactor: replace int i = 4 and int i (4) with int i {4}
+* Figure out how to hide the taskbar and replace it with our own
+* Figure out how to detect change of focus and update stuff like the tab indicator, etc.
+* Figure out how to handle fullscreen windows
+* 

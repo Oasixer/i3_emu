@@ -111,7 +111,7 @@ namespace i3{
   }
 
   void DataContainer::applyDefaultWorkspaceLayout(){
-    HWND focusedHandle = GetFocus();
+    const auto focusedHandle = GetForegroundWindow();
     auto focusedWindow = findWindowByHandle(focusedHandle);
     assert(focusedWindow != nullptr);
 

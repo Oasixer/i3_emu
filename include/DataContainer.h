@@ -33,8 +33,7 @@ namespace i3 {
       std::shared_ptr<App> findAppByNameOrCreateNewIfNeeded(std::string name, std::string fullExePath);
       std::shared_ptr<Window> findWindowByHandle(HWND handle);
       std::shared_ptr<Monitor> findMonitorByHandle(HMONITOR handle);
-      // void parseOpenWindowsFromVec(std::vector<std::shared_ptr<Window>>& windows)
-      // void parseMonitorFromVec(std::unique_ptr<std::vector<std::pair<HMONITOR, LPRECT>>> vec);
+      std::unique_ptr<std::vector<std::shared_ptr<Window>>> getWindows() {return std::make_unique<std::vector<std::shared_ptr<Window>>>(_windows);};
       void setWindows(std::unique_ptr<std::vector<std::shared_ptr<Window>>> windows);
       void setMonitors(std::unique_ptr<std::vector<std::shared_ptr<Monitor>>> monitors);
       void writeAppsToJson();

@@ -21,7 +21,11 @@ namespace i3{
     ,_title{title}
     ,_pid{pid}
     ,_fullExePath{fullExePath}
-    { };
+    { 
+      RECT rect;
+      GetWindowRect(_handle, &rect);
+      _rect = std::make_shared<RECT>(rect);
+    };
     
     void setApp(std::shared_ptr<App> app);
 

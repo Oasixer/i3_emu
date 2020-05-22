@@ -160,6 +160,7 @@
     <ClInclude Include="DisplayWindow\include\Monitor.h" />
     <ClInclude Include="DisplayWindow\include\Rect.h" />
     <ClInclude Include="DisplayWindow\include\Tabbed.h" />
+    <ClInclude Include="DisplayWindow\include\Taskbar.h" />
     <ClInclude Include="DisplayWindow\include\Vertical.h" />
     <ClInclude Include="DisplayWindow\include\Window.h" />
     <ClInclude Include="DisplayWindow\include\Workspace.h" />

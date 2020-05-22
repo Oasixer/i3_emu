@@ -92,6 +92,9 @@
     <ClInclude Include="include\win32debug_utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DisplayWindow\include\Taskbar.h">
+      <Filter>Header Files\DisplayWindow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\App.cpp">

@@ -167,7 +167,7 @@ namespace i3{
   
   void DataContainer::attachWindowCallbacks(){
     for (auto& window : _windows){
-      window->regCallbackTest();
+      //window->regCallbackTest();
     }
 
 

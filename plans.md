@@ -18,4 +18,5 @@
 * Figure out how to hide the taskbar and replace it with our own
 * Figure out how to detect change of focus and update stuff like the tab indicator, etc.
 * Figure out how to handle fullscreen windows
+* refactor: remove the horrible unnecesary pointers
 * 

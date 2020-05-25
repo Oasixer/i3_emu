@@ -12,7 +12,7 @@ namespace i3{
   class Rect;
   class Window : public Component {
   private:
-    HWND _handle;
+    const HWND _handle;
     std::string _title;
     std::string _fullExePath;
     int _pid;
@@ -27,6 +27,6 @@ namespace i3{
 
     std::string getFullExePath() const { return _fullExePath; };
 
-    void WinMove(int deltaTop, int deltaRight, int deltaBottom, int deltaLeft);
+    void winMove(int deltaTop, int deltaRight, int deltaBottom, int deltaLeft);
   };
 }

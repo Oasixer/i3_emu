@@ -4,14 +4,14 @@
 #include "Composite.h"
 namespace i3 {
   class DataContainer;
-  class Monitor;
+  // class Monitor;
   class Workspace: public Composite{
     private:
       int _num;
-      std::shared_ptr<Monitor> _monitor;
-      std::shared_ptr<DataContainer> _parentDataContainer;
+      // Monitor* _monitor; //TODO: check if this would need to be a reference member var - try changing a param and see if it goes through to the original monitor obj
+      // DataContainer* _parentDataContainer;
     public:
-      Workspace(int num, std::shared_ptr<DataContainer> parentDataContainer);
-      void setMonitor(std::shared_ptr<Monitor> monitor);
+      Workspace(int num);//, DataContainer* parentDataContainer);
+      // void setMonitor(Monitor* monitor);
   };
 }

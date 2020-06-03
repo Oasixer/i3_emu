@@ -26,9 +26,14 @@ namespace i3{
     _fullExePath = d["fullExePath"].GetString();
   }
 
-  void App::addWindow(std::shared_ptr<Window> window){
-    _windows.push_back(window);
+  App::App(std::string name, std::string fullExePath){
+    _name = name;
+    _fullExePath = fullExePath;
   }
+
+  // void App::addWindow(Window& window){
+    // _windows.push_back(window);
+  // }
 
   const std::string App::toJsonString() {
     rapidjson::StringBuffer s;
@@ -66,18 +71,23 @@ namespace i3{
     // writer.EndObject();
     // return s;
   // }
-  
-  std::shared_ptr<Window> App::findWindowByHandle(HWND handle){
-    for (const auto& window : _windows){
-      if (window -> getHandle() == handle){
-        return window;
-      }
-    }
-    return nullptr;
-  }
 
-  // std::vector<std::shared_ptr<Window>>& App::getWindows() {
+  // std::vector<Window>& App::getWindows(){
     // return _windows;
+  // }
+
+
+  // bool App::isOpen() const {
+    // return !_windows.empty();
+  // }
+  
+  // Window* App::findWindowByHandle(HWND handle){
+    // for (auto& window : _windows){
+      // if (window.getHandle() == handle){
+        // return &window;
+      // }
+    // }
+    // return nullptr;
   // }
 
   std::ostream& operator<<(std::ostream& os, const App& app)

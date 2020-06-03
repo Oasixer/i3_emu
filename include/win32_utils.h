@@ -10,20 +10,20 @@
 #include "str_utils.h"
 #include "Window.h"
 #include "Monitor.h"
-
 namespace utils {
-
   inline BOOL CALLBACK monitorCallback(HMONITOR hmonitor, HDC hdc, LPRECT lprect, LPARAM lParam) {
     std::vector<std::shared_ptr<i3::Monitor>>& monitors = *reinterpret_cast<std::vector<std::shared_ptr<i3::Monitor>>*>(lParam);
     RECT rect(*lprect);
-    monitors.push_back(std::make_shared<i3::Monitor>(hmonitor, rect));
+    // TODO undo this line
+    i3::Monitor monitor(hmonitor, rect);
+    // monitors.push_back(std::make_shared<i3::Monitor>(hmonitor, rect));
     return TRUE;
   }
 
-  inline std::unique_ptr<std::vector<std::shared_ptr<i3::Monitor>>> getMonitors() {
+  inline std::vector<std::shared_ptr<i3::Monitor>> getMonitors() {
     std::vector<std::shared_ptr<i3::Monitor>> monitors;
     EnumDisplayMonitors(NULL, NULL, monitorCallback, reinterpret_cast<LPARAM>(&monitors));
-    return std::make_unique<std::vector<std::shared_ptr<i3::Monitor>>>(monitors);
+    return monitors;
   }
 
   inline BOOL CALLBACK windowCallback(HWND hwnd, LPARAM lParam) {
@@ -58,27 +58,25 @@ namespace utils {
 
     // Retrieve the pointer passed into this callback, and re-'type' it.
     // The only way for a C API to pass arbitrary data is by means of a void*.
-    std::vector<std::shared_ptr<i3::Window>>& windows =
-      *reinterpret_cast<std::vector<std::shared_ptr<i3::Window>>*>(lParam);
-    windows.push_back(std::make_shared<i3::Window>(hwnd, title, pid, fullExePath));
+    std::vector<std::unique_ptr<i3::Window>>& windows =
+      *reinterpret_cast<std::vector<std::unique_ptr<i3::Window>>*>(lParam);
+    windows.push_back(std::make_unique<i3::Window>(hwnd, title, pid, fullExePath));
 
     return TRUE;
   }
 
-  inline std::unique_ptr<std::vector<std::shared_ptr<i3::Window>>> getOpenWindows() {
-    std::vector<std::shared_ptr<i3::Window>> windows;
+  inline std::vector<std::unique_ptr<i3::Window>> getOpenWindows() {
+    std::vector<std::unique_ptr<i3::Window>> windows;
     EnumWindows(windowCallback, reinterpret_cast<LPARAM>(&windows));
-    return std::make_unique<std::vector<std::shared_ptr<i3::Window>>>(windows);
+    return windows;
   }
 
-  inline HMONITOR GetPrimaryMonitorHandle()
-  {
+  inline HMONITOR GetPrimaryMonitorHandle(){
     const POINT ptZero = { 0, 0 };
     return MonitorFromPoint(ptZero, MONITOR_DEFAULTTOPRIMARY);
   }
 
-  inline void OnSize(HWND hwnd, UINT flag, int width, int height)
-  {
+  inline void OnSize(HWND hwnd, UINT flag, int width, int height){
       // Handle resizing
       std::cout << "resize2!!!!" << std::endl;
   }

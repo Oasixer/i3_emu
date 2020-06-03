@@ -8,20 +8,16 @@
 #include "Taskbar.h"
 #include "DataContainer.h"
 #include "AppInst.h"
-
 namespace i3{
   AppInst::AppInst(){
     std::cout << "Init AppInst" << std::endl;
-    _dataContainer = std::make_shared<DataContainer>("./save");
-    _dataContainer->setWindows(std::move(utils::getOpenWindows()));
-    _dataContainer->setMonitors(std::move(utils::getMonitors()));
-    _dataContainer->attachApps();
-    _dataContainer->createDefaultWorkspaceLayout();
-    _dataContainer->applyDefaultWorkspaceLayout();
-    _dataContainer->attachWindowCallbacks();
-    //std::string temp;
-    //std::cin >> temp;
-    // std::cout << (*(_dataContainer->getWindows()))[0]->getRect()->bottom << std::endl;
+    _dataContainer = DataContainer("./save");
+    // _dataContainer.setWindows(utils::getOpenWindows());
+    _dataContainer.setMonitors(utils::getMonitors());
+    //_dataContainer.attachApps();
+    _dataContainer.createDefaultWorkspaceLayout();
+    _dataContainer.applyDefaultWorkspaceLayout();
+    //_dataContainer.attachWindowCallbacks();
     gShowHideTaskBar(true); // hide
     Sleep(1000);
     gShowHideTaskBar(false); // show
@@ -29,10 +25,8 @@ namespace i3{
     std::cout << "Finish init AppInst" << std::endl;
   }
 
-
-
-  void AppInst::writeAppsToJson() const{
-    _dataContainer->writeAppsToJson();
+  void AppInst::writeAppsToJson() {
+    //_dataContainer.writeAppsToJson();
   }
 
   std::ostream& operator<<(std::ostream& os, AppInst& appInst)

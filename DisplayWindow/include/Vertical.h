@@ -8,6 +8,6 @@ namespace i3 {
     private:
       std::unique_ptr<Composite> _parent;
     public:
-      Vertical(std::unique_ptr<Composite> parent);
+      Vertical(Composite& parent);
   };
 }

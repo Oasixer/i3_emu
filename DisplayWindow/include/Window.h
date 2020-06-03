@@ -5,23 +5,22 @@
 #include "pch.h"
 
 #include "Component.h"
-
 namespace i3{
   class Composite;
   class App;
   class Rect;
   class Window : public Component {
   private:
-    const HWND _handle;
+    HWND _handle;
     std::string _title;
     std::string _fullExePath;
     int _pid;
-    std::shared_ptr<App> _app;
-    std::shared_ptr<Rect> _rect;
+    App* _app;
+    //std::unique_ptr<Rect> _rect;
   public:
     Window(HWND handle, std::string title, int pid, std::string fullExePath);
     
-    void setApp(std::shared_ptr<App> app);
+    void setApp(App &app);
 
     const HWND getHandle() const { return _handle; };
 

@@ -1,7 +1,7 @@
 #include "Tabbed.h"
 
 namespace i3{
-  Tabbed::Tabbed(std::shared_ptr<Composite> parent){
+  Tabbed::Tabbed(Composite* parent){
     _parent = parent;
   }
 }

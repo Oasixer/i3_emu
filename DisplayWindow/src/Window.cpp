@@ -13,18 +13,18 @@ namespace i3{
     _title = title;
     _pid = pid;
     _fullExePath = fullExePath;
-    _rect = std::make_shared<Rect>(handle);
+    _rect = Rect(handle);
   }
 
-  void Window::setApp(std::shared_ptr<App> app){
-    _app = app;
+  void Window::setApp(App &app){
+    _app = &app;
   }
   
   void Window::winMove(int deltaTop, int deltaRight, int deltaBottom, int deltaLeft){
     // So that compatibility is retained, don't set ErrorLevel for commands that are native to AutoIt2
     // but that AutoIt2 doesn't use ErrorLevel with (such as this one).
     HWND target_window = _handle;
-    Rect rect = *_rect;
+    Rect rect = _rect; // TODO remove this pointless alias
     rect.mvTop(deltaTop);
     rect.mvRight(deltaRight);
     rect.mvBottom(deltaBottom);

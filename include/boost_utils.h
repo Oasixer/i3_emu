@@ -31,11 +31,11 @@ namespace utils {
     return std::string(&bytes[0], fileSize);
   }
 
-  inline std::unique_ptr<rapidjson::Document> pathStrToDoc(std::string pathStr){
-    auto jsonStr = readFile(pathStr);
-    auto jsonCStr = jsonStr.c_str();
-    std::unique_ptr<rapidjson::Document> d = std::make_unique<rapidjson::Document>();
-    d -> Parse(jsonCStr);
-    return d;
-  }
+  // inline std::unique_ptr<rapidjson::Document> pathStrToDoc(std::string pathStr){
+    // auto jsonStr = readFile(pathStr);
+    // auto jsonCStr = jsonStr.c_str();
+    // std::unique_ptr<rapidjson::Document> d = std::make_unique<rapidjson::Document>();
+    // d -> Parse(jsonCStr);
+    // return d;
+  // }
 }

@@ -1,3 +1,4 @@
+// #include "Component.h"
 #include "Rect.h"
 
 namespace i3 {

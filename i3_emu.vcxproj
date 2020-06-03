@@ -181,6 +181,8 @@
   <ItemGroup>
     <ClCompile Include="DisplayWindow\src\Component.cpp" />
     <ClCompile Include="DisplayWindow\src\Composite.cpp" />
+    <ClCompile Include="DisplayWindow\src\Horizontal.cpp" />
+    <ClCompile Include="DisplayWindow\src\Monitor.cpp" />
     <ClCompile Include="DisplayWindow\src\Rect.cpp" />
     <ClCompile Include="DisplayWindow\src\Tabbed.cpp" />
     <ClCompile Include="DisplayWindow\src\Window.cpp" />

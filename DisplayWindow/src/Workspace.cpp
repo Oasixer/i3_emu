@@ -1,12 +1,13 @@
-#include "DataContainer.h"
+// #include "DataContainer.h"
 #include "Workspace.h"
 namespace i3 {
-  Workspace::Workspace(int num, std::shared_ptr<DataContainer> parentDataContainer){
+  Workspace::Workspace(int num){//, DataContainer* parentDataContainer){
     _num = num;
-    _parentDataContainer = parentDataContainer;
+    // _parentDataContainer = parentDataContainer;
+    // _parent = nullptr; // refers to a parent composite element which doesnt exist for a workspace
   }
 
-  void Workspace::setMonitor(std::shared_ptr<Monitor> monitor){
-    _monitor = monitor;
-  }
+  // void Workspace::setMonitor(Monitor* monitor){
+    // _monitor = monitor;
+  // }
 }

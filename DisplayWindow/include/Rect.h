@@ -1,9 +1,9 @@
 #pragma once
-
 #include "framework.h"
 #include "pch.h"
 
 namespace i3{
+  //class Component;
   class Rect{
     private:
       int _top;
@@ -12,23 +12,25 @@ namespace i3{
       int _left;
     public:
       // order: top, right, bottom, left
+      Rect() {};
       Rect(int top_, int right, int bottom, int left)
         :_top{ top_ }
         ,_right{right}
         ,_bottom{bottom}
         ,_left{left}
+        // ,_parent{nullptr}
       { };
 
       Rect(HWND hwnd);
 
-      void setFromRECT(RECT& rect){
+      void setFromRECT(const RECT& rect){
         _top = static_cast<int>(rect.top);
         _right = static_cast<int>(rect.right);
         _bottom = static_cast<int>(rect.bottom);
         _left = static_cast<int>(rect.left);
       }
       
-      Rect(RECT rect){
+      Rect(const RECT& rect){
         setFromRECT(rect);
       }
 
@@ -49,10 +51,10 @@ namespace i3{
         _left += left;
       }
 
-      int getTop(){ return _top; };
-      int getRight(){ return _right; };
-      int getBottom(){ return _bottom; };
-      int getLeft(){ return _left; };
+      int getTop() const { return _top; };
+      int getRight() const { return _right; };
+      int getBottom() const { return _bottom; };
+      int getLeft() const { return _left; };
       
       RECT getRECT(){
         RECT rect;

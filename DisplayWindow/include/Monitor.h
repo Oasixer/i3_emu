@@ -4,18 +4,13 @@
 #include "framework.h"
 #include "pch.h"
 
-#include "Rect.h"
-
+#include "Composite.h"
 namespace i3{
-  class Monitor{
+  class Monitor : public Composite{
     private:
-      const HMONITOR _handle;
-      std::shared_ptr<Rect> _rect;
+      HMONITOR _handle;
     public:
-      Monitor(HMONITOR handle, RECT rect)
-        :_handle{ handle }
-        ,_rect{ std::make_shared<Rect>(rect) }
-      { };
-      const HMONITOR getHandle() const { return _handle; };
+      Monitor(HMONITOR handle, RECT rect);
+      HMONITOR getHandle() const { return _handle; };
   };
 }

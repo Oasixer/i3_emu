@@ -133,5 +133,11 @@
     <ClCompile Include="DisplayWindow\src\Rect.cpp">
       <Filter>Source Files\DisplayWindow</Filter>
     </ClCompile>
+    <ClCompile Include="DisplayWindow\src\Horizontal.cpp">
+      <Filter>Source Files\DisplayWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayWindow\src\Monitor.cpp">
+      <Filter>Source Files\DisplayWindow</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
